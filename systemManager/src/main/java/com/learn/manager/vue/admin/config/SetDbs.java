@@ -3,7 +3,7 @@ package com.learn.manager.vue.admin.config;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
-import com.learn.treeEn.config.DataSourceContextHolder;
+import com.kkzxm.ppmvc.config.DataSourceContextHolder;
 
 @Aspect
 @Component
