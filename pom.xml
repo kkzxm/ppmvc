@@ -13,8 +13,8 @@
     </parent>
 
 
-    <groupId>com.kkzxm.ppmvc</groupId>
-    <artifactId>treeEn</artifactId>
+    <groupId>com.kkzxm</groupId>
+    <artifactId>ppmvc</artifactId>
     <version>1.0.0</version>
 
     <name>ppmvc</name>
