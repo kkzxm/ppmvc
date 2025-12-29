@@ -1,4 +1,4 @@
-package com.learn.treeEn.base.controller.intercept;
+package com.kkzxm.ppmvc.controller.intercept;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

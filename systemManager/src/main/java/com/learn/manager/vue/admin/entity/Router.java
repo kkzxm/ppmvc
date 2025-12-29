@@ -1,6 +1,7 @@
 package com.learn.manager.vue.admin.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.kkzxm.ppmvc.entity.BaseEntity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import lombok.experimental.Accessors;
 @Data
 @NoArgsConstructor
 @Accessors(chain = true)
-public class Router {
+public class Router implements BaseEntity {
     private String id;
     private String pid;
     private String path;

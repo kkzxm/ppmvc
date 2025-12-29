@@ -1,9 +1,8 @@
 package com.learn.manager.vue.admin.core.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.kkzxm.ppmvc.service.AService;
 import com.learn.manager.vue.admin.entity.Router;
-import com.learn.treeEn.base.service.ABaseDoIt;
 
 import org.springframework.stereotype.Service;
 
@@ -12,10 +11,7 @@ import org.springframework.stereotype.Service;
  * @CreateTime: 2024/10/29 02:51
  */
 @Service
-public class RouterService extends ABaseDoIt<Router> {
-    protected RouterService(BaseMapper<Router> baseMapper) {
-        super(baseMapper, Router.class);
-    }
+public class RouterService extends AService<Router> {
 
     /**
      * 删除前先判断是否有子元素

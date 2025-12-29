@@ -1,8 +1,7 @@
 package com.learn.manager.vue.admin.core.controller;
 
+import com.kkzxm.ppmvc.controller.AController;
 import com.learn.manager.vue.admin.entity.Router;
-import com.learn.treeEn.base.controller.ABaseController;
-import com.learn.treeEn.base.service.DoIt;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +13,5 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController()
 @RequestMapping("/router")
-public class RouterController extends ABaseController<Router> {
-    public RouterController(DoIt<Router> doIt) {
-        super(doIt, "前端路由");
-    }
+public class RouterController extends AController<Router> {
 }
