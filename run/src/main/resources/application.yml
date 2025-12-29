@@ -1,0 +1,24 @@
+decorator:
+  datasource:
+    p6spy:
+      # 日志格式
+      log-format: "\ntime:%(executionTime) || sql:%(sql)\n"
+      # 自定义日志类
+      # logging: custom
+      # custom-appender-class: com.example.testinit.config.StdoutLogger
+logging:
+  level:
+    com.baomidou.mybatisplus.samples: debug
+
+    
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: org.sqlite.JDBC
+    name: "main"
+    dbs1:
+      url: "jdbc:sqlite:D:/Mkdsals/projects/javas/kkzxm/treeEn/_db/treeEn.db"
+      name: "dbs1"
+    dbs2:
+      url: "jdbc:sqlite:D:/Mkdsals/projects/javas/kkzxm/treeEn/_db/system_manager.db"
+      name: "dbs2"

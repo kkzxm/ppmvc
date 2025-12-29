@@ -1,0 +1,2 @@
+com.github.gitofleonardo.simplesqlitebrowser
+me.rerere.unocss-intellij

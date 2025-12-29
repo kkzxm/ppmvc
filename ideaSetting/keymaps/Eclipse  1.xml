@@ -1,0 +1,6 @@
+<keymap version="1" name="Eclipse 副本 1" parent="Eclipse">
+
+    <action id="编辑器Delete">
+        <keyboard-shortcut first-keystroke="back_space"/>
+    </action>
+</keymap>
