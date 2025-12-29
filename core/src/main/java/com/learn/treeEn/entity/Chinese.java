@@ -2,6 +2,8 @@ package com.learn.treeEn.entity;
 
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.kkzxm.ppmvc.entity.BaseEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +20,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName("chinese")
-public class Chinese implements Serializable {
+public class Chinese implements BaseEntity {
     private Integer id;
     private String c_info;
     private String comment;

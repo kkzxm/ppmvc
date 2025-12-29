@@ -1,45 +1,70 @@
 package com.kkzxm.ppmvc.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.kkzxm.ppmvc.assign.processor.AProcessor;
 import com.kkzxm.ppmvc.entity.BaseEntity;
+import com.kkzxm.ppmvc.service.AService;
+import com.kkzxm.ppmvc.controller.result.*;;
 
-import java.util.Collections;
-import java.util.List;
 
 public abstract class AController <T extends BaseEntity> extends AProcessor<T> implements IController<T>{
+    private AService<T> doIt;
 
-    @Override
-    public Integer addOne(T t) {
-        return 0;
+    AController(){
+        doIt = (AService<T>)super.getNext();
     }
+    // region 增
 
+    /**
+     * 重写方法,需要再把@RequestBody加上
+     */
     @Override
-    public Integer addList(List<T> list) {
-        return 0;
+    public Result add(HttpServletRequest request, @RequestBody T entity) {
+        boolean save = doIt.save(entity);
+        return Result.result(save).setData(entity);
     }
+    // endregion
 
+    // region 删
     @Override
-    public Integer deleteOne(T t) {
-        return 0;
+    public Result delById(HttpServletRequest request, @RequestBody T entity) {
+        return Result.result(doIt.removeById(entity));
     }
+    // endregion
+
+    // region 改
 
     @Override
-    public Integer deleteList(List<T> list) {
-        return 0;
-    }
-
-    @Override
-    public Integer updateOne(T oldT, T newT) {
-        return 0;
-    }
-
-    @Override
-    public T findOne(T t) {
+    public Result update(HttpServletRequest request, T entity) {
         return null;
     }
 
     @Override
-    public List<T> findList(List<T> list) {
-        return Collections.emptyList();
+    public Result updateFindById(HttpServletRequest request, T entity) {
+        return null;
     }
+    // endregion
+
+    // region 查
+    @Override
+    public Result getPage(Integer thisPage, Integer pageSize, String filter) {
+        Page<T> page = doIt.page(new Page<>(thisPage, Math.max(0, pageSize)));
+        return Result.success(page);
+    }
+
+    @Override
+    public Result toInsertPage() {
+        return null;
+    }
+
+    @Override
+    public Result list() {
+        return Result.success(doIt.list());
+    }
+    // endregion
+
 }

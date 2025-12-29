@@ -1,46 +1,119 @@
 package com.kkzxm.ppmvc.service;
 
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
+
+import org.apache.ibatis.logging.Log;
+import org.apache.ibatis.logging.LogFactory;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.override.MybatisMapperProxy;
+import com.baomidou.mybatisplus.core.toolkit.MybatisUtils;
+import com.baomidou.mybatisplus.extension.toolkit.SqlHelper;
 import com.kkzxm.ppmvc.assign.processor.AProcessor;
+import com.kkzxm.ppmvc.assign.processor.Processor;
 import com.kkzxm.ppmvc.entity.BaseEntity;
 
-import java.util.Collections;
-import java.util.List;
-
-
 public abstract class AService<T extends BaseEntity> extends AProcessor<T> implements IService<T> {
-    @Override
-    public Integer addOne(T t) {
-        return 0;
+
+    protected final Log log = LogFactory.getLog(this.getClass());
+
+    private volatile SqlSessionFactory sqlSessionFactory;
+
+
+    protected SqlSessionFactory getSqlSessionFactory() {
+        if (this.sqlSessionFactory == null) {
+            MybatisMapperProxy<?> mybatisMapperProxy = MybatisUtils.getMybatisMapperProxy(this.getBaseMapper());
+            this.sqlSessionFactory = MybatisUtils.getSqlSessionFactory(mybatisMapperProxy);
+        }
+
+        return this.sqlSessionFactory;
+    }
+
+    public boolean saveOrUpdate(T entity) {
+        return this.getBaseMapper().insertOrUpdate(entity);
+    }
+
+    @Transactional(
+            rollbackFor = {Exception.class}
+    )
+
+    public T getOne(Wrapper<T> queryWrapper, boolean throwEx) {
+        return this.getBaseMapper().selectOne(queryWrapper, throwEx);
+    }
+
+    public Optional<T> getOneOpt(Wrapper<T> queryWrapper, boolean throwEx) {
+        return Optional.ofNullable(this.getBaseMapper().selectOne(queryWrapper, throwEx));
+    }
+
+    public Map<String, Object> getMap(Wrapper<T> queryWrapper) {
+        return (Map) SqlHelper.getObject(this.log, this.getBaseMapper().selectMaps(queryWrapper));
+    }
+
+    public <V> V getObj(Wrapper<T> queryWrapper, Function<? super Object, V> mapper) {
+        return SqlHelper.getObject(this.log, this.listObjs(queryWrapper, mapper));
+    }
+
+
+    protected <E> boolean executeBatch(Collection<E> list, int batchSize, BiConsumer<SqlSession, E> consumer) {
+        return SqlHelper.executeBatch(this.getSqlSessionFactory(), this.log, list, batchSize, consumer);
+    }
+
+    protected <E> boolean executeBatch(Collection<E> list, BiConsumer<SqlSession, E> consumer) {
+        return this.executeBatch(list, 1000, consumer);
     }
 
     @Override
-    public Integer addList(List<T> list) {
-        return 0;
+    public boolean saveBatch(Collection<T> entityList, int batchSize) {
+        return false;
     }
 
     @Override
-    public Integer deleteOne(T t) {
-        return 0;
+    public boolean saveOrUpdateBatch(Collection<T> entityList, int batchSize) {
+        return false;
+    }
+
+    public boolean removeById(Serializable id, boolean useFill) {
+        return SqlHelper.retBool(this.getBaseMapper().deleteById(id, useFill));
+    }
+
+    public boolean removeBatchByIds(Collection<?> list, int batchSize) {
+        return SqlHelper.retBool(this.getBaseMapper().deleteByIds(list));
+    }
+
+    public boolean removeBatchByIds(Collection<?> list, int batchSize, boolean useFill) {
+        return SqlHelper.retBool(this.getBaseMapper().deleteByIds(list, useFill));
     }
 
     @Override
-    public Integer deleteList(List<T> list) {
-        return 0;
+    public boolean updateBatchById(Collection<T> entityList, int batchSize) {
+        return false;
     }
 
     @Override
-    public Integer updateOne(T oldT, T newT) {
-        return 0;
-    }
-
-    @Override
-    public T findOne(T t) {
+    public BaseMapper<T> getBaseMapper() {
+        Processor<T> p = super.getNext();
+       if (p instanceof BaseMapper) {
+         return (BaseMapper<T>) p;
+       }
         return null;
     }
 
+    /**
+     * mp框架链式查询用到这个方法,
+     */
     @Override
-    public List<T> findList(List<T> list) {
-        return Collections.emptyList();
+    public Class<T> getEntityClass() {
+        return null;
     }
+    
 }
 

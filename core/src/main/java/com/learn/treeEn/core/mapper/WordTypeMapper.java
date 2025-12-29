@@ -1,6 +1,6 @@
 package com.learn.treeEn.core.mapper;
 
-import com.learn.treeEn.base.mapper.SelfBaseMapper;
+import com.kkzxm.ppmvc.mapper.PMapper;
 import com.learn.treeEn.entity.WordType;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -9,5 +9,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @CreateTime: 2021-04-21 10:37
  */
 @Mapper
-public interface WordTypeMapper extends SelfBaseMapper<WordType> {
+public interface WordTypeMapper extends PMapper<WordType> {
 }

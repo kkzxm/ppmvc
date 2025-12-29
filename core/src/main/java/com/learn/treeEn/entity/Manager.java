@@ -2,6 +2,8 @@ package com.learn.treeEn.entity;
 
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.kkzxm.ppmvc.entity.BaseEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +18,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName("manager")
-public class Manager {
+public class Manager implements BaseEntity{
     private Integer managerId;
     private String accountNumber;
     private String managerPassword;

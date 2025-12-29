@@ -2,7 +2,7 @@ package com.learn.treeEn.core.service;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.learn.treeEn.base.service.ABaseDoIt;
+import com.kkzxm.ppmvc.service.AService;
 import com.learn.treeEn.entity.WordToChinese;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +11,5 @@ import org.springframework.stereotype.Service;
  * @CreateTime: 2021-04-21 10:37
  */
 @Service
-public class WordToChineseService extends ABaseDoIt<WordToChinese> {
-    public WordToChineseService(BaseMapper<WordToChinese> baseMapper) {
-        super(baseMapper, WordToChinese.class);
-    }
+public class WordToChineseService extends AService<WordToChinese> {
 }

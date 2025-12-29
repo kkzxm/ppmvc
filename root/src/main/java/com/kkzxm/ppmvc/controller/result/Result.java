@@ -1,4 +1,4 @@
-package com.learn.treeEn.base.controller.result;
+package com.kkzxm.ppmvc.controller.result;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

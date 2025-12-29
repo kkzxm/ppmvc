@@ -2,6 +2,8 @@ package com.learn.treeEn.entity;
 
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.kkzxm.ppmvc.entity.BaseEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +22,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName("word_tag_group")
-public class WordAndTagGroup implements Serializable {
+public class WordAndTagGroup implements BaseEntity {
     private Integer word_id;
     private Integer tag_id;
     private String comment;

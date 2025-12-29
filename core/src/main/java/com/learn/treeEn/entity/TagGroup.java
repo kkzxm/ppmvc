@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.kkzxm.ppmvc.entity.BaseEntity;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -21,7 +23,7 @@ import java.util.Set;
 @Accessors(chain = true)
 @NoArgsConstructor
 @TableName("tag_group")
-public class TagGroup implements Serializable {
+public class TagGroup implements BaseEntity {
     @TableId(type = IdType.ASSIGN_ID)
     private Integer id;
     private String name;

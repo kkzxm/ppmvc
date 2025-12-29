@@ -1,6 +1,6 @@
 package com.learn.treeEn.core.service.allocation;
 
-import com.learn.treeEn.base.service.allocation.ABaseAllocation;
+import com.kkzxm.ppmvc.service.AService;
 import com.learn.treeEn.core.service.*;
 import com.learn.treeEn.entity.*;
 import org.springframework.stereotype.Component;
@@ -13,7 +13,7 @@ import java.util.Set;
  * @CreateTime: 2024/10/23 04:19
  */
 @Component
-public class WordAllocation extends ABaseAllocation<Word> {
+public class WordAllocation extends AService<Word> {
     private final ChineseService sChinese;
     private final WordToChineseService sWordToChinese;
     private final WordTypeService sType;
@@ -28,7 +28,6 @@ public class WordAllocation extends ABaseAllocation<Word> {
                           WordAndTypeService sWordAndType,
                           TagGroupService sTag,
                           WordAndTagService sWordAndTag) {
-        super(wordService, Word.class);
         this.sChinese = sChinese;
         this.sWordToChinese = sWordToChinese;
         this.sType = sType;
@@ -45,7 +44,7 @@ public class WordAllocation extends ABaseAllocation<Word> {
      */
     @Transactional
     public void add(Word word) {
-        super.getABaService().saveOrUpdate(word);
+        super.saveOrUpdate(word);
         Set<Chinese> chineseSet = word.getChineseSet();
         Set<WordType> typeSet = word.getTypeSet();
         Set<TagGroup> tagSet = word.getTagSet();

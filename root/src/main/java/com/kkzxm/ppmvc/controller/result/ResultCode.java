@@ -1,4 +1,4 @@
-package com.learn.treeEn.base.controller.result;
+package com.kkzxm.ppmvc.controller.result;
 
 public enum ResultCode {
     SUCCESS(true, 10000, "操作成功！"),

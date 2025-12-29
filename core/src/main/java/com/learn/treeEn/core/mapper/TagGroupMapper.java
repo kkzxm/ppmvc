@@ -1,6 +1,6 @@
 package com.learn.treeEn.core.mapper;
 
-import com.learn.treeEn.base.mapper.SelfBaseMapper;
+import com.kkzxm.ppmvc.mapper.PMapper;
 import com.learn.treeEn.entity.TagGroup;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -9,5 +9,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @CreateTime: 2021-04-21 10:37
  */
 @Mapper
-public interface TagGroupMapper extends SelfBaseMapper<TagGroup> {
+public interface TagGroupMapper extends PMapper<TagGroup> {
 }
