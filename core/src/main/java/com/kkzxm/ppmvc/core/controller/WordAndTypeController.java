@@ -1,6 +1,7 @@
 package com.kkzxm.ppmvc.core.controller;
 
 
+import com.kkzxm.ppmvc.assign.chian.basic.RegularChain;
 import com.kkzxm.ppmvc.controller.AController;
 import com.kkzxm.ppmvc.entity.WordAndType;
 
@@ -14,4 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/WordAndType")
 public class WordAndTypeController extends AController<WordAndType> {
+
+    public WordAndTypeController(RegularChain<WordAndType> reg) {
+        super(WordAndType.class, reg);
+    }
+
 }

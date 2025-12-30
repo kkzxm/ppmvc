@@ -9,5 +9,10 @@ import com.kkzxm.ppmvc.entity.BaseEntity;
  * @param <T>
  */
 public interface Processor<T extends BaseEntity> {
-    
+    /**
+     * 设置下一个处理器
+     *
+     * @return
+     */
+    Processor<T> next();
 }

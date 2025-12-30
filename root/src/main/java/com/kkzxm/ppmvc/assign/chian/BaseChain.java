@@ -1,24 +1,25 @@
 package com.kkzxm.ppmvc.assign.chian;
 
+import com.fasterxml.jackson.databind.JsonSerializable.Base;
 import com.kkzxm.ppmvc.assign.processor.AProcessor;
+import com.kkzxm.ppmvc.assign.processor.Processor;
 import com.kkzxm.ppmvc.entity.BaseEntity;
-import org.springframework.context.ApplicationContext;
 
 /**
  * 链
  * 装配工厂
  *
- * 链式调用中，一种类型的链对应一个子类
  */
 public abstract class BaseChain<T extends BaseEntity> {
-  private final ApplicationContext context;
+  
+  private PpmvcContext<T> ppmvcContext;
 
-  public BaseChain(ApplicationContext context) {
-    this.context = context;
+  public BaseChain(PpmvcContext<T> ppmvcContext) {
+      this.ppmvcContext = ppmvcContext;
   }
 
-  public ApplicationContext getContext() {
-    return context;
+  public PpmvcContext<T> getPpmvcContext(){
+      return this.ppmvcContext;
   }
 
   /**
@@ -26,20 +27,28 @@ public abstract class BaseChain<T extends BaseEntity> {
    *
    * @return
    */
-  public abstract AProcessor<T> getChain(Class<? extends BaseEntity> clazz);
+  public abstract Processor<T> getChain(Class<T> clazz);
 
   /**
    * 得到某个节点
    *
    * @return
    */
-  protected AProcessor<T> getBean(Class<AProcessor<T>> clazz) {
-   return context.getBean(clazz);
+  protected Processor<T> getBean(Class<AProcessor<T>> clazz) {
+     return ppmvcContext.getProcessorByEntityClassAndIndex((Class<T>)Base.class, -1);
   }
 
-  protected AProcessor<T> getBean(String name) {
-   return (AProcessor<T>) context.getBean(name);
+  @SuppressWarnings("null")
+  protected Processor<T> getBean(String name) {
+   return null;
   }
 
+  /**
+   * 把处理器加入到上下文中,并以实体类进行分类
+   */
+  public void addProcessor(Processor<T> processor,Class<T> entityClass){ 
+      ppmvcContext.registerProcessor(entityClass, processor);
+  }
 
+  public abstract Processor<T> getNextProcessor(Processor<T> processor, Class<T> entytyClass);
 }

@@ -1,6 +1,7 @@
 package com.kkzxm.ppmvc.core.controller;
 
 
+import com.kkzxm.ppmvc.assign.chian.basic.RegularChain;
 import com.kkzxm.ppmvc.controller.AController;
 import com.kkzxm.ppmvc.entity.WordToChinese;
 
@@ -14,4 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/WordToChinese")
 public class WordToChineseController extends AController<WordToChinese> {
+
+    public WordToChineseController( RegularChain<WordToChinese> reg) {
+        super(WordToChinese.class, reg);
+    }
 }

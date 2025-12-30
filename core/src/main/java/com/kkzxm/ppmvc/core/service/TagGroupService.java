@@ -1,5 +1,6 @@
 package com.kkzxm.ppmvc.core.service;
 
+import com.kkzxm.ppmvc.assign.chian.BaseChain;
 import com.kkzxm.ppmvc.entity.TagGroup;
 import com.kkzxm.ppmvc.service.AService;
 
@@ -11,4 +12,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class TagGroupService extends AService<TagGroup> {
+
+    public TagGroupService( BaseChain<TagGroup> reg) {
+        super(TagGroup.class, reg);
+        //TODO Auto-generated constructor stub
+    }
 }

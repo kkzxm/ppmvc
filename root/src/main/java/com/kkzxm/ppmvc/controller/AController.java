@@ -5,19 +5,21 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.kkzxm.ppmvc.annotation.PpmvcSort;
+import com.kkzxm.ppmvc.assign.chian.BaseChain;
 import com.kkzxm.ppmvc.assign.processor.AProcessor;
 import com.kkzxm.ppmvc.entity.BaseEntity;
 import com.kkzxm.ppmvc.service.AService;
 import com.kkzxm.ppmvc.controller.result.*;;
 
-
-public abstract class AController <T extends BaseEntity> extends AProcessor<T> implements IController<T>{
-
-    @Override
-    public AService<T> getNext() {
-        AService<T> saAService = (AService<T>) super.getNext();
-        return saAService;
+@PpmvcSort(Integer.MIN_VALUE)
+public abstract class AController<T extends BaseEntity> extends AProcessor<T> implements IController<T> {
+    AService<T> next;
+    public AController(Class<T> entytyClass, BaseChain<T> reg) {
+        super(entytyClass, reg);
+        this.next = (AService<T>) super.next();
     }
+  
     // region 增
 
     /**
@@ -25,7 +27,7 @@ public abstract class AController <T extends BaseEntity> extends AProcessor<T> i
      */
     @Override
     public Result add(HttpServletRequest request, @RequestBody T entity) {
-        boolean save = getNext().save(entity);
+        boolean save = next.save(entity);
         return Result.result(save).setData(entity);
     }
     // endregion
@@ -33,7 +35,7 @@ public abstract class AController <T extends BaseEntity> extends AProcessor<T> i
     // region 删
     @Override
     public Result delById(HttpServletRequest request, @RequestBody T entity) {
-        return Result.result(getNext().removeById(entity));
+        return Result.result(next.removeById(entity));
     }
     // endregion
 
@@ -53,7 +55,7 @@ public abstract class AController <T extends BaseEntity> extends AProcessor<T> i
     // region 查
     @Override
     public Result getPage(Integer thisPage, Integer pageSize, String filter) {
-        Page<T> page = getNext().page(new Page<>(thisPage, Math.max(0, pageSize)));
+        Page<T> page = next.page(new Page<>(thisPage, Math.max(0, pageSize)));
         return Result.success(page);
     }
 
@@ -64,7 +66,7 @@ public abstract class AController <T extends BaseEntity> extends AProcessor<T> i
 
     @Override
     public Result list() {
-        return Result.success(getNext().list());
+        return Result.success(next.list());
     }
     // endregion
 

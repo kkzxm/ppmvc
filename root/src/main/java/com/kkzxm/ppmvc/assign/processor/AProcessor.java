@@ -1,17 +1,27 @@
 package com.kkzxm.ppmvc.assign.processor;
 
+import com.kkzxm.ppmvc.assign.chian.BaseChain;
 import com.kkzxm.ppmvc.entity.BaseEntity;
 
 public abstract class AProcessor<T extends BaseEntity> implements Processor<T> {
 
+    BaseChain<T> chain;
     private Processor<T> next;
+    protected final Class<T> entytyClass;
 
-    public AProcessor<T> setNext(Processor<T> next){
-        this.next = next;
-        return this;
+    public AProcessor(Class<T> entytyClass, BaseChain<T> chain) {
+        this.chain = chain;
+        this.entytyClass = entytyClass;
+        chain.addProcessor(this, entytyClass);
     }
 
-    public Processor<T> getNext() {
+    /**
+     * 从仓库里获取下一个处理器
+     */
+    public Processor<T> next() {
+        if (next == null) {
+            next = chain.getNextProcessor(this, entytyClass);
+        }
         return next;
     }
 }

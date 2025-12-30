@@ -1,5 +1,6 @@
 package com.kkzxm.ppmvc.core.service.allocation;
 
+import com.kkzxm.ppmvc.assign.chian.BaseChain;
 import com.kkzxm.ppmvc.core.service.*;
 import com.kkzxm.ppmvc.entity.*;
 import com.kkzxm.ppmvc.service.AService;
@@ -22,13 +23,16 @@ public class WordAllocation extends AService<Word> {
     private final TagGroupService sTag;
     private final WordAndTagService sWordAndTag;
 
-    public WordAllocation(WordService wordService,
-                          ChineseService sChinese,
-                          WordToChineseService sWordToChinese,
-                          WordTypeService sType,
-                          WordAndTypeService sWordAndType,
-                          TagGroupService sTag,
-                          WordAndTagService sWordAndTag) {
+    public WordAllocation(
+            WordService wordService,
+            ChineseService sChinese,
+            WordToChineseService sWordToChinese,
+            WordTypeService sType,
+            WordAndTypeService sWordAndType,
+            TagGroupService sTag,
+            BaseChain<Word> reg,
+            WordAndTagService sWordAndTag) {
+            super(Word.class, reg);
         this.sChinese = sChinese;
         this.sWordToChinese = sWordToChinese;
         this.sType = sType;
@@ -53,13 +57,13 @@ public class WordAllocation extends AService<Word> {
         boolean ch = chineseSet.size() > 1 && sChinese.saveOrUpdateBatch(chineseSet);
         boolean ty = typeSet.size() > 1 && sType.saveOrUpdateBatch(typeSet);
         boolean ta = tagSet.size() > 1 && sTag.saveOrUpdateBatch(tagSet);
-        //操作关系表
-        //准备数据
+        // 操作关系表
+        // 准备数据
         Integer wordId = word.getId();
         Set<WordToChinese> wordToChineseSet = WordToChinese.wordIdGetWordToChineseSet(wordId, chineseSet, "");
         Set<WordAndType> wordAndTypeSet = WordAndType.wordIdGetWordAndTypeSet(wordId, typeSet, "");
         Set<WordAndTagGroup> wordAndTagGroups = WordAndTagGroup.wordIdGetWordTagSet(wordId, tagSet, "");
-        //添加关系表
+        // 添加关系表
         boolean a = ch && sWordToChinese.saveOrUpdateBatch(wordToChineseSet);
         boolean b = ty && sWordAndType.saveOrUpdateBatch(wordAndTypeSet);
         boolean c = ta && sWordAndTag.saveOrUpdateBatch(wordAndTagGroups);

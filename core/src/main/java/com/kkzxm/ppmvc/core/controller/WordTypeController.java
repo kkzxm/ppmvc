@@ -1,5 +1,6 @@
 package com.kkzxm.ppmvc.core.controller;
 
+import com.kkzxm.ppmvc.assign.chian.basic.RegularChain;
 import com.kkzxm.ppmvc.controller.AController;
 import com.kkzxm.ppmvc.entity.WordType;
 
@@ -13,4 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/WordType")
 public class WordTypeController extends AController<WordType> {
+
+    public WordTypeController(RegularChain<WordType> reg) {
+        super(WordType.class, reg);
+    }
 }

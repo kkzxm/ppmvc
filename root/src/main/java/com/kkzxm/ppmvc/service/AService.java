@@ -18,11 +18,18 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.override.MybatisMapperProxy;
 import com.baomidou.mybatisplus.core.toolkit.MybatisUtils;
 import com.baomidou.mybatisplus.extension.toolkit.SqlHelper;
+import com.kkzxm.ppmvc.annotation.PpmvcSort;
+import com.kkzxm.ppmvc.assign.chian.BaseChain;
 import com.kkzxm.ppmvc.assign.processor.AProcessor;
 import com.kkzxm.ppmvc.assign.processor.Processor;
 import com.kkzxm.ppmvc.entity.BaseEntity;
 
+@PpmvcSort(200)
 public abstract class AService<T extends BaseEntity> extends AProcessor<T> implements IService<T> {
+
+    public AService(Class<T> entytyClass, BaseChain<T> reg) {
+        super(entytyClass, reg);
+    }
 
     protected final Log log = LogFactory.getLog(this.getClass());
 
@@ -100,7 +107,7 @@ public abstract class AService<T extends BaseEntity> extends AProcessor<T> imple
 
     @Override
     public BaseMapper<T> getBaseMapper() {
-        Processor<T> p = super.getNext();
+        Processor<T> p = super.next();
        if (p instanceof BaseMapper) {
          return (BaseMapper<T>) p;
        }
