@@ -24,7 +24,7 @@ import com.kkzxm.ppmvc.assign.processor.AProcessor;
 import com.kkzxm.ppmvc.assign.processor.Processor;
 import com.kkzxm.ppmvc.entity.BaseEntity;
 
-@PpmvcSort(200)
+@PpmvcSort(5)
 public abstract class AService<T extends BaseEntity> extends AProcessor<T> implements IService<T> {
 
     public AService(Class<T> entytyClass, BaseChain<T> reg) {
@@ -52,7 +52,6 @@ public abstract class AService<T extends BaseEntity> extends AProcessor<T> imple
     @Transactional(
             rollbackFor = {Exception.class}
     )
-
     public T getOne(Wrapper<T> queryWrapper, boolean throwEx) {
         return this.getBaseMapper().selectOne(queryWrapper, throwEx);
     }
@@ -62,13 +61,12 @@ public abstract class AService<T extends BaseEntity> extends AProcessor<T> imple
     }
 
     public Map<String, Object> getMap(Wrapper<T> queryWrapper) {
-        return (Map) SqlHelper.getObject(this.log, this.getBaseMapper().selectMaps(queryWrapper));
+        return SqlHelper.getObject(this.log, this.getBaseMapper().selectMaps(queryWrapper));
     }
 
     public <V> V getObj(Wrapper<T> queryWrapper, Function<? super Object, V> mapper) {
         return SqlHelper.getObject(this.log, this.listObjs(queryWrapper, mapper));
     }
-
 
     protected <E> boolean executeBatch(Collection<E> list, int batchSize, BiConsumer<SqlSession, E> consumer) {
         return SqlHelper.executeBatch(this.getSqlSessionFactory(), this.log, list, batchSize, consumer);

@@ -9,16 +9,14 @@ decorator:
 logging:
   level:
     com.baomidou.mybatisplus.samples: debug
-
-    
 spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: org.sqlite.JDBC
     name: "main"
     dbs1:
-      url: "jdbc:sqlite:D:/Mkdsals/projects/javas/kkzxm/treeEn/_db/treeEn.db"
+      url: "jdbc:sqlite:_db/treeEn.db"
       name: "dbs1"
     dbs2:
-      url: "jdbc:sqlite:D:/Mkdsals/projects/javas/kkzxm/treeEn/_db/system_manager.db"
+      url: "jdbc:sqlite:_db/systemManager.db"
       name: "dbs2"

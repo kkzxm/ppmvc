@@ -1,5 +1,6 @@
 package com.kkzxm.ppmvc.assign.processor;
 
+import com.kkzxm.ppmvc.annotation.PpmvcSort;
 import com.kkzxm.ppmvc.assign.chian.BaseChain;
 import com.kkzxm.ppmvc.entity.BaseEntity;
 
@@ -12,7 +13,9 @@ public abstract class AProcessor<T extends BaseEntity> implements Processor<T> {
     public AProcessor(Class<T> entytyClass, BaseChain<T> chain) {
         this.chain = chain;
         this.entytyClass = entytyClass;
-        chain.addProcessor(this, entytyClass);
+        this.next = chain.getNextProcessor();
+        chain.setEntityClass(entytyClass);
+        chain.addProcessor(this,entytyClass);
     }
 
     /**

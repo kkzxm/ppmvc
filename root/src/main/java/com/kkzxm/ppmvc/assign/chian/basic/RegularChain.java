@@ -5,7 +5,10 @@ import com.kkzxm.ppmvc.annotation.PpmvcSort;
 import com.kkzxm.ppmvc.assign.chian.BaseChain;
 import com.kkzxm.ppmvc.assign.chian.PpmvcContext;
 import com.kkzxm.ppmvc.entity.BaseEntity;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * 普通链式调用
@@ -13,7 +16,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class RegularChain<T extends BaseEntity> extends BaseChain<T> {
-
 
 	RegularChain(PpmvcContext<T> ppmvcContext) {
         super(ppmvcContext);
@@ -29,12 +31,20 @@ public class RegularChain<T extends BaseEntity> extends BaseChain<T> {
 
 	@Override
 	public Processor<T> getNextProcessor(Processor<T> processor, Class<T> entytyClass) {
-        System.out.println(
-            processor.getClass().getSimpleName() + " ---> " +
-            processor.getClass().getAnnotation(PpmvcSort.class)
-            .value()
-            + " ---> " + entytyClass.getSimpleName()
-        );
-        return null;
+        int value = processor.getClass().getAnnotation(PpmvcSort.class).value();
+        List<Processor<T>> chainsByEntityClass = getPpmvcContext().getChainsByEntityClass(entytyClass);
+        int abs = 10;
+        Processor<T> nextProcessor = null;
+        for (int i = 0; i < chainsByEntityClass.size(); i++) {
+            Processor<T>chain = chainsByEntityClass.get(i);
+            int index = chain.getClass().getAnnotation(PpmvcSort.class).value();
+            if (index >= value) {continue;}
+            if (index - value < abs) {
+                abs = index - value;
+                nextProcessor = chain;
+                System.out.println(nextProcessor.getClass().getName());
+            }
+        }
+        return nextProcessor;
 	}
 }

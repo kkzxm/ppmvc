@@ -1,6 +1,7 @@
 package com.kkzxm.ppmvc.assign.processor;
 
 import com.kkzxm.ppmvc.entity.BaseEntity;
+import org.springframework.beans.factory.SmartInitializingSingleton;
 
 
 /**
@@ -8,7 +9,7 @@ import com.kkzxm.ppmvc.entity.BaseEntity;
  *
  * @param <T>
  */
-public interface Processor<T extends BaseEntity> {
+public interface Processor<T extends BaseEntity>  {
     /**
      * 设置下一个处理器
      *

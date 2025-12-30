@@ -5,7 +5,7 @@ import com.kkzxm.ppmvc.annotation.PpmvcSort;
 import com.kkzxm.ppmvc.assign.processor.Processor;
 import com.kkzxm.ppmvc.entity.BaseEntity;
 
-@PpmvcSort(value = Integer.MAX_VALUE)
+@PpmvcSort(value = 0)
 public interface PMapper<T extends BaseEntity> extends Processor<T> , BaseMapper<T>{
 
 }
