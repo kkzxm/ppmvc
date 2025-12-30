@@ -31,16 +31,18 @@ public class RegularChain<T extends BaseEntity> extends BaseChain<T> {
 
 	@Override
 	public Processor<T> getNextProcessor(Processor<T> processor, Class<T> entytyClass) {
-        int value = processor.getClass().getAnnotation(PpmvcSort.class).value();
+        int thisSort = processor.getClass().getAnnotation(PpmvcSort.class).value();
         List<Processor<T>> chainsByEntityClass = getPpmvcContext().getChainsByEntityClass(entytyClass);
         int abs = 10;
         Processor<T> nextProcessor = null;
         for (int i = 0; i < chainsByEntityClass.size(); i++) {
             Processor<T>chain = chainsByEntityClass.get(i);
-            int index = chain.getClass().getAnnotation(PpmvcSort.class).value();
-            if (index >= value) {continue;}
-            if (index - value < abs) {
-                abs = index - value;
+            int nextSort = chain.getClass().getAnnotation(PpmvcSort.class).value();
+            if (nextSort <= thisSort) {
+                continue;
+            }
+            if (nextSort - thisSort < abs) {
+                abs = nextSort - thisSort;
                 nextProcessor = chain;
                 System.out.println(nextProcessor.getClass().getName());
             }

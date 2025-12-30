@@ -13,8 +13,8 @@ public abstract class AProcessor<T extends BaseEntity> implements Processor<T> {
     public AProcessor(Class<T> entytyClass, BaseChain<T> chain) {
         this.chain = chain;
         this.entytyClass = entytyClass;
-        this.next = chain.getNextProcessor();
         chain.setEntityClass(entytyClass);
+        this.next = chain.getNextProcessor(this, entytyClass);
         chain.addProcessor(this,entytyClass);
     }
 

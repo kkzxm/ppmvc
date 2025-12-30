@@ -27,7 +27,8 @@ public class PpmvcContext<T extends BaseEntity> {
      * 根据实体类获取对应的所有处理器链
      */
     public List<Processor<T>> getChainsByEntityClass(Class<T> entityClass) {
-        return processorMap.get(entityClass);
+         List<Processor<T>> processors = processorMap.get(entityClass);
+         return processors != null ? processors : new ArrayList<>();
     }
 
     /**
@@ -53,7 +54,9 @@ public class PpmvcContext<T extends BaseEntity> {
      * 注册单个处理器到对应实体类的处理器链中
      */
     public void registerProcessor(Class<T> entityClass, Processor<T> processor) {
-        processorMap.computeIfAbsent(entityClass, k -> new ArrayList<>()).add(processor);
+        List<Processor<T>> processors = getChainsByEntityClass(entityClass);
+        processors.add(processor);
+        processorMap.put(entityClass, processors);
     }
     // #endregion
 }
