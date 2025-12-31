@@ -15,5 +15,7 @@ public interface Processor<T extends BaseEntity>  {
      *
      * @return
      */
-    Processor<T> next();
+    Processor<T> next(Processor<T> processor);
+
+    int getSortValue();
 }

@@ -1,5 +1,9 @@
 package com.kkzxm.ppmvc.assign.chian;
 
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
 import com.kkzxm.ppmvc.assign.processor.Processor;
 import com.kkzxm.ppmvc.entity.BaseEntity;
 import lombok.Getter;
@@ -14,25 +18,19 @@ import lombok.Setter;
 @Setter
 public abstract class BaseChain<T extends BaseEntity> {
   
-  private PpmvcContext<T> ppmvcContext;
+  private PpmvcContext ppmvcContext;
   private Class<T> entityClass;
+  private static final Set<Class<?>> entityClassSet = new HashSet<>();
 
-  public BaseChain(PpmvcContext<T> ppmvcContext) {
+
+
+  public BaseChain(PpmvcContext ppmvcContext) {
       this.ppmvcContext = ppmvcContext;
+      entityClassSet.add(entityClass);
   }
 
-    /**
-   * 得到装好的链
-   *
-   * @return
-   */
-  public abstract Processor<T> getChain(Class<T> clazz);
-
-
-
-  @SuppressWarnings("null")
-  protected Processor<T> getBean(String name) {
-   return null;
+  protected Iterator<Class<?>> getEntityClassIterator() {
+      return entityClassSet.iterator();
   }
 
   /**
@@ -42,5 +40,13 @@ public abstract class BaseChain<T extends BaseEntity> {
       ppmvcContext.registerProcessor(entityClass, processor);
   }
 
-  public abstract Processor<T> getNextProcessor(Processor<T> processor, Class<T> entytyClass);
+  /**
+   * 装配
+   * 从ppmvcContext中获取
+   * 实体类对应的链式调用
+   * 并装配完成
+   *
+   * 最后调用
+   */
+  public abstract void processorChain();
 }
