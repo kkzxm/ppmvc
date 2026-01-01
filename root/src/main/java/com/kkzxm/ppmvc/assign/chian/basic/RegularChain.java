@@ -6,6 +6,7 @@ import com.kkzxm.ppmvc.assign.processor.Processor;
 import com.kkzxm.ppmvc.entity.BaseEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -29,11 +30,25 @@ public class RegularChain<T extends BaseEntity> extends BaseChain<T> {
         for (Class<BaseEntity> entityClass : enClassSet) {
             List<Processor<BaseEntity>> processorList = getPpmvcContext().getChainListByEntityClass(entityClass);
             // 装配
-            for (Processor<BaseEntity> processor : processorList) {
-                System.out.println("装配处理器：" + processor.getClass().getSimpleName());
+            sort(processorList);
+            for (int i = 0; i < processorList.size() - 1; i++) {
+                processorList.get(i).next(processorList.get(i + 1));
             }
-            System.out.println();
         }
-
     }
+
+    /**
+     * 通过sort排序
+     */
+    public void sort(List<Processor<BaseEntity>> processorList) {
+        processorList.sort((o1, o2) -> {
+            if (o1.getSortValue() > o2.getSortValue()) {
+                return 1;
+            } else if (o1.getSortValue() < o2.getSortValue()) {
+                return -1;
+            }
+            return 0;
+        });
+    }
+
 }

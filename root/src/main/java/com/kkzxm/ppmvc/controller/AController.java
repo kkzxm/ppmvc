@@ -15,7 +15,7 @@ import com.kkzxm.ppmvc.controller.result.*;;
 public abstract class AController<T extends BaseEntity> extends AProcessor<T> implements IController<T> {
     AService<T> next;
     public AController(Class<T> entytyClass, PpmvcContext ppmvcContext) {
-        super(entytyClass, ppmvcContext,10);
+        super(entytyClass, ppmvcContext,0);
     }
   
     // region 增
