@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
@@ -20,10 +21,16 @@ import lombok.Setter;
  */
 @Component
 public class PpmvcContext {
-    private Map<Class<? extends BaseEntity>, InContext<? extends BaseEntity>> inMap = new HashMap<>();
+    private  Map inMap;
 
+    // #region 内部方法
+    public PpmvcContext() {
+        this.inMap = new HashMap<Class<?>, InContext<?>>();
+    }
     /**
      * 根据实体类获取对应的处理器仓库
+     * 如果没有则创建一个新的仓库
+     * 存在则正常返回
      */
     private <T extends BaseEntity> InContext<T> getInContext(Class<T> entityClass) {
         if (inMap.containsKey(entityClass)) {
@@ -34,33 +41,22 @@ public class PpmvcContext {
             return inContext;
         }
     }
-    /**
-     * 存储各个实体类对应的处理器链
-     */
+
+    public <T extends BaseEntity> Map<Class<T>, InContext<T>> getInMap() {
+        return inMap;
+    }
+    // #endregion
 
     // #region get
     /**
-     * 根据实体类获取对应的所有处理器链
+     * 根据实体类获取对应的
+     * 所有处理器List
      */
     public <T extends BaseEntity> List<Processor<T>> getChainListByEntityClass(Class<T> entityClass) {
         InContext<T> inContext = getInContext(entityClass);
         return inContext.getProcessors();
     }
-
-    // /**
-    // * * 根据实体类以及下标获取单个处理器
-    // */
-    // public Processor<? extends BaseEntity>
-    // getProcessorByEntityClassAndIndex(Class<? extends BaseEntity> entityClass,
-    // int index) {
-    // List<Processor<? extends BaseEntity>> processors =
-    // processorMap.get(entityClass);
-    // if (processors != null && index >= 0 && index < processors.size()) {
-    // return processors.get(index);
-    // }
-    // return null;
-    // }
-    // // #endregion
+    // #endregion
 
     // #region register注册
     /**
@@ -71,8 +67,18 @@ public class PpmvcContext {
         inContext.addProcessor(processor);
     }
     // #endregion
+
+    // #region 给装配链使用的方法
+    /**
+     * 得到实体类链
+     */
+    public <T extends BaseEntity> Set<Class<BaseEntity>> getEntityClassIterable() {
+        return  getInMap().keySet();
+    }
+    // #endregion
 }
 
+// #region 内部类
 /**
  * 底层存储仓库,
  * 每个实体类对应一个处理器链列表
@@ -88,3 +94,4 @@ class InContext<T extends BaseEntity> {
         processors.add(processor);
     }
 }
+ //#endregion

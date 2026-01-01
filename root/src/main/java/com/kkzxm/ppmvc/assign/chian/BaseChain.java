@@ -33,12 +33,6 @@ public abstract class BaseChain<T extends BaseEntity> {
       return entityClassSet.iterator();
   }
 
-  /**
-   * 把处理器加入到上下文中,并以实体类进行分类
-   */
-  public void addProcessor(Processor<T> processor,Class<T> entityClass){ 
-      ppmvcContext.registerProcessor(entityClass, processor);
-  }
 
   /**
    * 装配
@@ -48,5 +42,5 @@ public abstract class BaseChain<T extends BaseEntity> {
    *
    * 最后调用
    */
-  public abstract void processorChain();
+  public abstract <T extends BaseEntity, P extends Processor<T>> void processorChain();
 }
