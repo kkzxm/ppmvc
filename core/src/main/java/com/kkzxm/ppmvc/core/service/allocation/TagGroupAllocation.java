@@ -1,6 +1,7 @@
 package com.kkzxm.ppmvc.core.service.allocation;
 
 import com.kkzxm.ppmvc.assign.chian.BaseChain;
+import com.kkzxm.ppmvc.assign.chian.PpmvcContext;
 import com.kkzxm.ppmvc.entity.TagGroup;
 import com.kkzxm.ppmvc.service.AService;
 
@@ -10,7 +11,7 @@ import com.kkzxm.ppmvc.service.AService;
  */
 public class TagGroupAllocation extends AService<TagGroup> {
 
-    public TagGroupAllocation(BaseChain<TagGroup> reg) {
-        super(TagGroup.class,reg);
+    public TagGroupAllocation(PpmvcContext ppmvcContext) {
+        super(TagGroup.class, ppmvcContext);
     }
 }

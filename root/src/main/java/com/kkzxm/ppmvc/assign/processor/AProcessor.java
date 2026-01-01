@@ -3,24 +3,22 @@ package com.kkzxm.ppmvc.assign.processor;
 import javax.annotation.PostConstruct;
 
 import com.kkzxm.ppmvc.assign.chian.BaseChain;
+import com.kkzxm.ppmvc.assign.chian.PpmvcContext;
 import com.kkzxm.ppmvc.entity.BaseEntity;
 
 import lombok.Getter;
 
 public abstract class AProcessor<T extends BaseEntity> implements Processor<T> {
 
-    BaseChain<T> chain;
     private Processor<T> next;
     protected final Class<T> entytyClass;
     @Getter
     private final int sortValue;
 
-    public AProcessor(Class<T> entytyClass, BaseChain<T> chain, int sortValue) {
-        this.chain = chain;
+    public AProcessor(Class<T> entytyClass,PpmvcContext ppmvcContext, int sortValue) {
         this.entytyClass = entytyClass;
         this.sortValue = sortValue;
-        chain.setEntityClass(entytyClass);
-        chain.addProcessor(this, entytyClass);
+        ppmvcContext.registerProcessor(entytyClass,this);
     }
 
  

@@ -1,7 +1,7 @@
 package com.kkzxm.ppmvc.core.service;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.kkzxm.ppmvc.assign.chian.BaseChain;
+
+import com.kkzxm.ppmvc.assign.chian.PpmvcContext;
 import com.kkzxm.ppmvc.entity.Chinese;
 import com.kkzxm.ppmvc.service.AService;
 
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ChineseService extends AService<Chinese> {
 
-    public ChineseService(BaseChain<Chinese> reg) {
-        super(Chinese.class, reg);
+    public ChineseService(PpmvcContext ppmvcContext) {
+        super(Chinese.class, ppmvcContext);
     }
 }

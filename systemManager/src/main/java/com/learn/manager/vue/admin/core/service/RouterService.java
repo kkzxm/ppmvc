@@ -1,7 +1,7 @@
 package com.learn.manager.vue.admin.core.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.kkzxm.ppmvc.assign.chian.BaseChain;
+import com.kkzxm.ppmvc.assign.chian.PpmvcContext;
 import com.kkzxm.ppmvc.service.AService;
 import com.learn.manager.vue.admin.entity.Router;
 
@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class RouterService extends AService<Router> {
 
-    public RouterService( BaseChain<Router> reg) {
-        super(Router.class, reg);
+    public RouterService(PpmvcContext ppmvcContext) {
+        super(Router.class, ppmvcContext);
     }
 
     /**

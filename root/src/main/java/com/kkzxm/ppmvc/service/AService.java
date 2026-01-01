@@ -19,15 +19,15 @@ import com.baomidou.mybatisplus.core.override.MybatisMapperProxy;
 import com.baomidou.mybatisplus.core.toolkit.MybatisUtils;
 import com.baomidou.mybatisplus.extension.toolkit.SqlHelper;
 
-import com.kkzxm.ppmvc.assign.chian.BaseChain;
+import com.kkzxm.ppmvc.assign.chian.PpmvcContext;
 import com.kkzxm.ppmvc.assign.processor.AProcessor;
 
 import com.kkzxm.ppmvc.entity.BaseEntity;
 
 public abstract class AService<T extends BaseEntity> extends AProcessor<T> implements IService<T> {
 
-    public AService(Class<T> entytyClass, BaseChain<T> reg) {
-        super(entytyClass, reg,70);
+    public AService(Class<T> entytyClass, PpmvcContext ppmvcContext) {
+        super(entytyClass, ppmvcContext,70);
     }
 
     protected final Log log = LogFactory.getLog(this.getClass());

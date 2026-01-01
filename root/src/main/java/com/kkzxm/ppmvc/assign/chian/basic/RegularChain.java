@@ -4,10 +4,8 @@ package com.kkzxm.ppmvc.assign.chian.basic;
 import com.kkzxm.ppmvc.assign.chian.BaseChain;
 import com.kkzxm.ppmvc.assign.chian.PpmvcContext;
 import com.kkzxm.ppmvc.entity.BaseEntity;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 

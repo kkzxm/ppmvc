@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.kkzxm.ppmvc.assign.chian.BaseChain;
+import com.kkzxm.ppmvc.assign.chian.PpmvcContext;
 import com.kkzxm.ppmvc.assign.processor.AProcessor;
 import com.kkzxm.ppmvc.entity.BaseEntity;
 import com.kkzxm.ppmvc.service.AService;
@@ -14,8 +14,8 @@ import com.kkzxm.ppmvc.controller.result.*;;
 
 public abstract class AController<T extends BaseEntity> extends AProcessor<T> implements IController<T> {
     AService<T> next;
-    public AController(Class<T> entytyClass, BaseChain<T> reg) {
-        super(entytyClass, reg,10);
+    public AController(Class<T> entytyClass, PpmvcContext ppmvcContext) {
+        super(entytyClass, ppmvcContext,10);
     }
   
     // region 增

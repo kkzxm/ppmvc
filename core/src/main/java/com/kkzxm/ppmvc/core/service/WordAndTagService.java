@@ -1,7 +1,7 @@
 package com.kkzxm.ppmvc.core.service;
 
 
-import com.kkzxm.ppmvc.assign.chian.BaseChain;
+import com.kkzxm.ppmvc.assign.chian.PpmvcContext;
 import com.kkzxm.ppmvc.entity.WordAndTagGroup;
 import com.kkzxm.ppmvc.service.AService;
 
@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class WordAndTagService extends AService<WordAndTagGroup> {
 
-    public WordAndTagService(BaseChain<WordAndTagGroup> reg) {
-        super(WordAndTagGroup.class, reg);
+    public WordAndTagService(PpmvcContext ppmvcContext) {
+        super(WordAndTagGroup.class, ppmvcContext);
     }
 
 }

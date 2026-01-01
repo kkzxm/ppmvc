@@ -1,6 +1,6 @@
 package com.kkzxm.ppmvc.core.controller;
 
-import com.kkzxm.ppmvc.assign.chian.basic.RegularChain;
+import com.kkzxm.ppmvc.assign.chian.PpmvcContext;
 import com.kkzxm.ppmvc.controller.AController;
 import com.kkzxm.ppmvc.entity.Chinese;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 @Controller(value = "/chinese")
 public class ChineseController extends AController<Chinese> {
 
-    public ChineseController(RegularChain<Chinese> reg) {
-        super(Chinese.class, reg);
+    public ChineseController(PpmvcContext ppmvcContext) {
+        super(Chinese.class, ppmvcContext);
     }
 }

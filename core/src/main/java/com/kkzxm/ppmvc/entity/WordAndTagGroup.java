@@ -2,14 +2,12 @@ package com.kkzxm.ppmvc.entity;
 
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.kkzxm.ppmvc.entity.BaseEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 

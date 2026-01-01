@@ -2,7 +2,6 @@ package com.kkzxm.ppmvc.entity;
 
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.kkzxm.ppmvc.entity.BaseEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
