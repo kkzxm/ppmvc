@@ -1,5 +1,6 @@
 package com.kkzxm.ppmvc.core.mapper;
 
+import com.kkzxm.ppmvc.entity.Chinese;
 import com.kkzxm.ppmvc.entity.TagGroup;
 import com.kkzxm.ppmvc.mapper.PMapper;
 
@@ -11,4 +12,8 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface TagGroupMapper extends PMapper<TagGroup> {
+    @Override
+    default Class<TagGroup> getEntityClass() {
+        return TagGroup.class;
+    }
 }

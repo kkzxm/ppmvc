@@ -6,7 +6,6 @@ import com.kkzxm.ppmvc.assign.processor.Processor;
 import com.kkzxm.ppmvc.entity.BaseEntity;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -19,9 +18,6 @@ import javax.annotation.PostConstruct;
 @Component
 public class RegularChain<T extends BaseEntity> extends BaseChain<T> {
 
-    RegularChain(PpmvcContext ppmvcContext) {
-        super(ppmvcContext);
-    }
 
     @Override
     @PostConstruct

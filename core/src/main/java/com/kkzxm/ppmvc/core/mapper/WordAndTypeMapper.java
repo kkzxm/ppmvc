@@ -12,4 +12,8 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface WordAndTypeMapper extends PMapper<WordAndType> {
+    @Override
+    default Class<WordAndType> getEntityClass() {
+        return WordAndType.class;
+    }
 }

@@ -1,6 +1,5 @@
 package com.kkzxm.ppmvc.core.service.allocation;
 
-import com.kkzxm.ppmvc.assign.chian.PpmvcContext;
 import com.kkzxm.ppmvc.core.service.*;
 import com.kkzxm.ppmvc.entity.*;
 import com.kkzxm.ppmvc.service.AService;
@@ -30,9 +29,8 @@ public class WordAllocation extends AService<Word> {
             WordTypeService sType,
             WordAndTypeService sWordAndType,
             TagGroupService sTag,
-            PpmvcContext ppmvcContext,
             WordAndTagService sWordAndTag) {
-            super(Word.class, ppmvcContext);
+            super(Word.class);
         this.sChinese = sChinese;
         this.sWordToChinese = sWordToChinese;
         this.sType = sType;

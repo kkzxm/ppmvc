@@ -24,8 +24,8 @@ public abstract class BaseChain<T extends BaseEntity> {
 
 
 
-  public BaseChain(PpmvcContext ppmvcContext) {
-      this.ppmvcContext = ppmvcContext;
+  public BaseChain() {
+      this.ppmvcContext = PpmvcContext.getInstance();
       entityClassSet.add(entityClass);
   }
 

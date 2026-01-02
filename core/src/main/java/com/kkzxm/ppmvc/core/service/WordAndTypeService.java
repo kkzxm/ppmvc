@@ -2,7 +2,7 @@ package com.kkzxm.ppmvc.core.service;
 
 
 import com.kkzxm.ppmvc.assign.chian.BaseChain;
-import com.kkzxm.ppmvc.assign.chian.PpmvcContext;
+
 import com.kkzxm.ppmvc.entity.WordAndType;
 import com.kkzxm.ppmvc.service.AService;
 
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class WordAndTypeService extends AService<WordAndType> {
 
-    public WordAndTypeService(PpmvcContext ppmvcContext) {
-        super(WordAndType.class, ppmvcContext);
+    public WordAndTypeService() {
+        super(WordAndType.class);
     }
 }

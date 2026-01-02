@@ -1,7 +1,5 @@
 package com.kkzxm.ppmvc.core.controller;
 
-
-import com.kkzxm.ppmvc.assign.chian.PpmvcContext;
 import com.kkzxm.ppmvc.controller.AController;
 import com.kkzxm.ppmvc.entity.WordAndTagGroup;
 
@@ -16,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/WordAndTag")
 public class WordAndTagController extends AController<WordAndTagGroup> {
 
-    public WordAndTagController(PpmvcContext ppmvcContext) {
-        super(WordAndTagGroup.class, ppmvcContext);
+    public WordAndTagController() {
+        super(WordAndTagGroup.class);
     }
 
 }

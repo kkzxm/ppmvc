@@ -19,14 +19,20 @@ import lombok.Setter;
  * 装处理器的仓库
  * 
  */
-@Component
 public class PpmvcContext {
-    private  Map inMap;
+    private Map inMap;
+
+    private static final PpmvcContext INSTANCE = new PpmvcContext();
+
+    public static PpmvcContext getInstance() {
+        return INSTANCE;
+    }
 
     // #region 内部方法
-    public PpmvcContext() {
+    private PpmvcContext() {
         this.inMap = new HashMap<Class<?>, InContext<?>>();
     }
+
     /**
      * 根据实体类获取对应的处理器仓库
      * 如果没有则创建一个新的仓库
@@ -73,7 +79,7 @@ public class PpmvcContext {
      * 得到实体类链
      */
     public <T extends BaseEntity> Set<Class<BaseEntity>> getEntityClassIterable() {
-        return  getInMap().keySet();
+        return getInMap().keySet();
     }
     // #endregion
 }
@@ -94,4 +100,4 @@ class InContext<T extends BaseEntity> {
         processors.add(processor);
     }
 }
- //#endregion
+// #endregion

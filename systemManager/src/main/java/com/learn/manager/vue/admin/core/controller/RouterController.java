@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/router")
 public class RouterController extends AController<Router> {
 
-    public RouterController( PpmvcContext ppmvcContext) {
-        super(Router.class, ppmvcContext);
+    public RouterController() {
+        super(Router.class);
     }
 }

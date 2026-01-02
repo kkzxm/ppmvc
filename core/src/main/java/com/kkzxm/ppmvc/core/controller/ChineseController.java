@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 @Controller(value = "/chinese")
 public class ChineseController extends AController<Chinese> {
 
-    public ChineseController(PpmvcContext ppmvcContext) {
-        super(Chinese.class, ppmvcContext);
+    public ChineseController() {
+        super(Chinese.class);
     }
 }

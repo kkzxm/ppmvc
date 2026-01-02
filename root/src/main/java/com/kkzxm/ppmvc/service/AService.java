@@ -26,8 +26,8 @@ import com.kkzxm.ppmvc.entity.BaseEntity;
 
 public abstract class AService<T extends BaseEntity> extends AProcessor<T> implements IService<T> {
 
-    public AService(Class<T> entytyClass, PpmvcContext ppmvcContext) {
-        super(entytyClass, ppmvcContext,5);
+    public AService(Class<T> entytyClass) {
+        super(entytyClass,5);
     }
 
     protected final Log log = LogFactory.getLog(this.getClass());

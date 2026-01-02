@@ -12,4 +12,8 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface WordToChineseMapper extends PMapper<WordToChinese> {
+    @Override
+    default Class<WordToChinese> getEntityClass() {
+        return WordToChinese.class;
+    }
 }

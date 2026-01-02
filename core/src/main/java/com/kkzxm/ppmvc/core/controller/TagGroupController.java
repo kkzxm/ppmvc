@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/tagGroup")
 public class TagGroupController extends AController<TagGroup> {
 
-    public TagGroupController(PpmvcContext ppmvcContext) {
-        super(TagGroup.class, ppmvcContext);
+    public TagGroupController() {
+        super(TagGroup.class);
     }
 
 }

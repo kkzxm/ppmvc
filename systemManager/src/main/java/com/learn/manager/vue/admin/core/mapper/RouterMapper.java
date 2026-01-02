@@ -8,4 +8,8 @@ import com.learn.manager.vue.admin.entity.Router;
  * @CreateTime: 2024/10/29 02:49
  */
 public interface RouterMapper extends PMapper<Router> {
+    @Override
+    default Class<Router> getEntityClass() {
+        return Router.class;
+    }
 }

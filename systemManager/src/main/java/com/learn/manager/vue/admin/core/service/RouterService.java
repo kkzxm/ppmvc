@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class RouterService extends AService<Router> {
 
-    public RouterService(PpmvcContext ppmvcContext) {
-        super(Router.class, ppmvcContext);
+    public RouterService() {
+        super(Router.class);
     }
 
     /**

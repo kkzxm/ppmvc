@@ -7,4 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ChineseMapper extends PMapper<Chinese> {
+    @Override
+    default Class<Chinese> getEntityClass() {
+        return Chinese.class;
+    }
 }
