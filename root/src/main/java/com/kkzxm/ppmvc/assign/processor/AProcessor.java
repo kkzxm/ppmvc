@@ -4,14 +4,19 @@ import com.kkzxm.ppmvc.entity.BaseEntity;
 
 public abstract class AProcessor<T extends BaseEntity> implements Processor<T> {
 
-    private Processor<T> next;
+    protected Processor<T> next;
     protected final Class<T> entytyClass;
-    private int sortValue;
+    private final int sortValue;
 
     public AProcessor(Class<T> entytyClass, int sortValue) {
         this.entytyClass = entytyClass;
         this.sortValue = sortValue;
-        registerThis();
+    }
+
+    public AProcessor(Class<T> entytyClass,int sortValue, Processor<T> next) {
+        this.entytyClass = entytyClass;
+        this.sortValue = sortValue;
+        this.next(next);
     }
 
     @Override
@@ -28,8 +33,7 @@ public abstract class AProcessor<T extends BaseEntity> implements Processor<T> {
      * 从仓库里获取下一个处理器
      */
     @Override
-    public Processor<T> next(Processor<T> processor) {
-        this.next = processor;
-        return next;
+    public void next(Processor<? extends BaseEntity> processor) {
+        this.next = (Processor<T>) processor;
     }
 }

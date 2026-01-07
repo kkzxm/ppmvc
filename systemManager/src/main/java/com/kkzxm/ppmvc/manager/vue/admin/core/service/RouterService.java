@@ -1,9 +1,9 @@
-package com.learn.manager.vue.admin.core.service;
+package com.kkzxm.ppmvc.manager.vue.admin.core.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.kkzxm.ppmvc.assign.chian.PpmvcContext;
+import com.kkzxm.ppmvc.mapper.PMapper;
 import com.kkzxm.ppmvc.service.AService;
-import com.learn.manager.vue.admin.entity.Router;
+import com.kkzxm.ppmvc.manager.vue.admin.entity.Router;
 
 import org.springframework.stereotype.Service;
 
@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class RouterService extends AService<Router> {
 
-    public RouterService() {
-        super(Router.class);
+    public RouterService(PMapper<Router> mapper) {
+        super(Router.class,mapper);
     }
 
     /**

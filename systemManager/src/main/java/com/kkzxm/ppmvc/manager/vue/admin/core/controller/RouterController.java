@@ -1,8 +1,7 @@
-package com.learn.manager.vue.admin.core.controller;
+package com.kkzxm.ppmvc.manager.vue.admin.core.controller;
 
-import com.kkzxm.ppmvc.assign.chian.PpmvcContext;
 import com.kkzxm.ppmvc.controller.AController;
-import com.learn.manager.vue.admin.entity.Router;
+import com.kkzxm.ppmvc.manager.vue.admin.entity.Router;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;

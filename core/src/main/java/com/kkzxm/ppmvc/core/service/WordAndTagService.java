@@ -2,6 +2,7 @@ package com.kkzxm.ppmvc.core.service;
 
 
 import com.kkzxm.ppmvc.entity.WordAndTagGroup;
+import com.kkzxm.ppmvc.mapper.PMapper;
 import com.kkzxm.ppmvc.service.AService;
 
 import org.springframework.stereotype.Service;
@@ -13,8 +14,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class WordAndTagService extends AService<WordAndTagGroup> {
 
-    public WordAndTagService() {
-        super(WordAndTagGroup.class);
+    public WordAndTagService(PMapper<WordAndTagGroup> pMapper) {
+        super(WordAndTagGroup.class, pMapper);
     }
 
 }

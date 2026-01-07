@@ -2,6 +2,7 @@ package com.kkzxm.ppmvc.core.service.allocation;
 
 import com.kkzxm.ppmvc.core.service.*;
 import com.kkzxm.ppmvc.entity.*;
+import com.kkzxm.ppmvc.mapper.PMapper;
 import com.kkzxm.ppmvc.service.AService;
 
 import org.springframework.stereotype.Component;
@@ -29,8 +30,8 @@ public class WordAllocation extends AService<Word> {
             WordTypeService sType,
             WordAndTypeService sWordAndType,
             TagGroupService sTag,
-            WordAndTagService sWordAndTag) {
-            super(Word.class);
+            WordAndTagService sWordAndTag, PMapper<Word> mapper) {
+            super(Word.class,mapper);
         this.sChinese = sChinese;
         this.sWordToChinese = sWordToChinese;
         this.sType = sType;

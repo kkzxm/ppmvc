@@ -1,4 +1,4 @@
-package com.learn.manager.vue.admin.entity;
+package com.kkzxm.ppmvc.manager.vue.admin.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.kkzxm.ppmvc.entity.BaseEntity;

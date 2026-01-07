@@ -1,9 +1,9 @@
 package com.kkzxm.ppmvc.core.service;
 
 
-import com.kkzxm.ppmvc.assign.chian.BaseChain;
 
 import com.kkzxm.ppmvc.entity.WordAndType;
+import com.kkzxm.ppmvc.mapper.PMapper;
 import com.kkzxm.ppmvc.service.AService;
 
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class WordAndTypeService extends AService<WordAndType> {
 
-    public WordAndTypeService() {
-        super(WordAndType.class);
+    public WordAndTypeService(PMapper<WordAndType> mapper) {
+        super(WordAndType.class, mapper);
     }
 }

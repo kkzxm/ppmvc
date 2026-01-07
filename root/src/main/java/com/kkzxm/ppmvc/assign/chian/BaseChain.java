@@ -1,13 +1,7 @@
 package com.kkzxm.ppmvc.assign.chian;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-
-import com.kkzxm.ppmvc.assign.processor.Processor;
-import com.kkzxm.ppmvc.entity.BaseEntity;
 import lombok.Getter;
-import lombok.Setter;
+import org.springframework.boot.CommandLineRunner;
 
 /**
  * 链
@@ -15,24 +9,9 @@ import lombok.Setter;
  *
  */
 @Getter
-@Setter
-public abstract class BaseChain<T extends BaseEntity> {
-  
-  private PpmvcContext ppmvcContext;
-  private Class<T> entityClass;
-  private static final Set<Class<?>> entityClassSet = new HashSet<>();
+public abstract class BaseChain implements CommandLineRunner {
 
-
-
-  public BaseChain() {
-      this.ppmvcContext = PpmvcContext.getInstance();
-      entityClassSet.add(entityClass);
-  }
-
-  protected Iterator<Class<?>> getEntityClassIterator() {
-      return entityClassSet.iterator();
-  }
-
+    private final PpmvcContext ppmvcContext = PpmvcContext.ppmvcContext();
 
   /**
    * 装配
@@ -42,5 +21,10 @@ public abstract class BaseChain<T extends BaseEntity> {
    *
    * 最后调用
    */
-  public abstract <T extends BaseEntity, P extends Processor<T>> void processorChain();
+  public abstract void processorChain();
+
+    @Override
+    public void run(String... args) throws Exception {
+        processorChain();
+    }
 }

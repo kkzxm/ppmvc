@@ -3,8 +3,9 @@ package com.kkzxm.ppmvc.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.kkzxm.ppmvc.assign.processor.Processor;
 import com.kkzxm.ppmvc.entity.BaseEntity;
+import org.springframework.context.ApplicationContextAware;
 
-public interface PMapper<T extends BaseEntity> extends Processor<T>, BaseMapper<T> {
+public interface PMapper<T extends BaseEntity> extends Processor<T>, BaseMapper<T>, ApplicationContextAware {
 
     /**
      * 获取当前处理器的排序值
@@ -16,4 +17,9 @@ public interface PMapper<T extends BaseEntity> extends Processor<T>, BaseMapper<
     default int getSortValue() {
         return Integer.MAX_VALUE;
     }
+
+    @Override
+    default void run(String... args) {}
+
+
 }

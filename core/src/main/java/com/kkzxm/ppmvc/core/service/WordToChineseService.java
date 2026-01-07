@@ -2,6 +2,7 @@ package com.kkzxm.ppmvc.core.service;
 
 
 import com.kkzxm.ppmvc.entity.WordToChinese;
+import com.kkzxm.ppmvc.mapper.PMapper;
 import com.kkzxm.ppmvc.service.AService;
 
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class WordToChineseService extends AService<WordToChinese> {
 
-    public WordToChineseService() {
-        super(WordToChinese.class);
+    public WordToChineseService(PMapper<WordToChinese> pMapper) {
+        super(WordToChinese.class, pMapper);
     }
 }

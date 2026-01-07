@@ -1,5 +1,19 @@
 package com.kkzxm.ppmvc.service;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.override.MybatisMapperProxy;
+import com.baomidou.mybatisplus.core.toolkit.MybatisUtils;
+import com.baomidou.mybatisplus.extension.toolkit.SqlHelper;
+import com.kkzxm.ppmvc.assign.processor.AProcessor;
+import com.kkzxm.ppmvc.entity.BaseEntity;
+import com.kkzxm.ppmvc.mapper.PMapper;
+import org.apache.ibatis.logging.Log;
+import org.apache.ibatis.logging.LogFactory;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
@@ -7,27 +21,10 @@ import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
-import org.apache.ibatis.logging.Log;
-import org.apache.ibatis.logging.LogFactory;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.core.override.MybatisMapperProxy;
-import com.baomidou.mybatisplus.core.toolkit.MybatisUtils;
-import com.baomidou.mybatisplus.extension.toolkit.SqlHelper;
-
-import com.kkzxm.ppmvc.assign.chian.PpmvcContext;
-import com.kkzxm.ppmvc.assign.processor.AProcessor;
-
-import com.kkzxm.ppmvc.entity.BaseEntity;
-
 public abstract class AService<T extends BaseEntity> extends AProcessor<T> implements IService<T> {
 
-    public AService(Class<T> entytyClass) {
-        super(entytyClass,5);
+    public AService(Class<T> entytyClass,PMapper<T> mapper) {
+        super(entytyClass,5,mapper);
     }
 
     protected final Log log = LogFactory.getLog(this.getClass());
@@ -104,16 +101,10 @@ public abstract class AService<T extends BaseEntity> extends AProcessor<T> imple
 
     @Override
     public BaseMapper<T> getBaseMapper() {
+        if (next instanceof PMapper) {
+            return (BaseMapper<T>) next;
+        }
         return null;
     }
-
-    /**
-     * mp框架链式查询用到这个方法,
-     */
-    @Override
-    public Class<T> getEntityClass() {
-        return null;
-    }
-    
 }
 

@@ -9,34 +9,36 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Set;
 
-import javax.annotation.PostConstruct;
-
 /**
  * 普通链式调用
  * controller → service → mapper
  */
 @Component
-public class RegularChain<T extends BaseEntity> extends BaseChain<T> {
+public class RegularChain extends BaseChain {
 
 
+    /**
+     * 从仓库取（装配到处理器中）
+     */
     @Override
-    @PostConstruct
-    public <T extends BaseEntity, P extends Processor<T>> void processorChain() {
-        Set<Class<BaseEntity>> enClassSet = getPpmvcContext().getEntityClassIterable();
-        for (Class<BaseEntity> entityClass : enClassSet) {
-            List<Processor<BaseEntity>> processorList = getPpmvcContext().getChainListByEntityClass(entityClass);
-            // 装配
+    public void processorChain() {
+        PpmvcContext ppmvcContext = getPpmvcContext();
+        Set<Class<? extends BaseEntity>> keysSet = ppmvcContext.getProcessorKeysSet();
+
+        for (Class<? extends BaseEntity> entityClass : keysSet) {
+            List<Processor<? extends BaseEntity>> processorList = ppmvcContext.getProcessorSetByEntityClass(entityClass);
             sort(processorList);
-            for (int i = 0; i < processorList.size() - 1; i++) {
-                processorList.get(i).next(processorList.get(i + 1));
+            for (int i = 0; i < processorList.size()-1; i++) {
+                processorList.get(i).next(processorList.get(i+1));
             }
+            System.out.println(processorList.size());
         }
     }
 
     /**
      * 通过sort排序
      */
-    public void sort(List<Processor<BaseEntity>> processorList) {
+    public void sort(List<Processor<? extends BaseEntity>> processorList) {
         processorList.sort((o1, o2) -> {
             if (o1.getSortValue() > o2.getSortValue()) {
                 return 1;

@@ -1,4 +1,4 @@
-package com.learn.manager.vue.admin.config;
+package com.kkzxm.ppmvc.manager.vue.admin.config;
 
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
