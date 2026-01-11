@@ -55,7 +55,9 @@ public class ProcessorStore implements ApplicationContextAware {
             for (int i = 0; i < processorList.size()-1; i++) {
                 Processor<? extends BaseEntity> thisP = processorList.get(i);
                 Processor<? extends BaseEntity> nextP = processorList.get(i+1);
-                thisP.next(nextP);
+                if (thisP instanceof AProcessor) {
+                    ((AProcessor<? extends BaseEntity>) thisP).next(nextP);
+                }
             }
         }
     }

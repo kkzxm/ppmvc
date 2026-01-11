@@ -18,6 +18,6 @@ import lombok.experimental.Accessors;
 @TableName("chinese")
 public class Chinese implements BaseEntity {
     private Integer id;
-    private String c_info;
+    private String info;
     private String comment;
 }

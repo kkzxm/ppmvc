@@ -3,18 +3,22 @@ package com.kkzxm.ppmvc.controller;
 import com.kkzxm.ppmvc.controller.result.Result;
 import com.kkzxm.ppmvc.entity.BaseEntity;
 import com.kkzxm.ppmvc.processor.AProcessor;
+import com.kkzxm.ppmvc.service.AService;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.servlet.http.HttpServletRequest;
-
-;
-
+import java.util.List;
 
 public abstract class AController<T extends BaseEntity> extends AProcessor<T> implements IController<T> {
     public AController(Class<T> entytyClass) {
         super(entytyClass,0);
     }
-  
+
+    @Override
+    public AService<T> next() {
+        return (AService<T>) super.next();
+    }
+
     // region 增
 
     /**
@@ -60,8 +64,8 @@ public abstract class AController<T extends BaseEntity> extends AProcessor<T> im
     }
 
     @Override
-    public Result list() {
-        return Result.success(super.next());
+    public List<T> list() {
+        return next().list();
     }
     // endregion
 

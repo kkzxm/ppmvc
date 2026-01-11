@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 public interface IController<T extends BaseEntity> {
      
@@ -26,7 +27,7 @@ public interface IController<T extends BaseEntity> {
     Result toInsertPage();
     
     @RequestMapping("/list")
-    Result list();
+    List<T> list();
     
     @GetMapping("/getPage")
     Result getPage(Integer thisPage, Integer pageSize, String filter);

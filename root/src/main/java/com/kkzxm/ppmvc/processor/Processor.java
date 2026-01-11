@@ -9,10 +9,6 @@ import com.kkzxm.ppmvc.entity.BaseEntity;
  */
 public interface Processor<T extends BaseEntity>{
 
-    void next(Processor<? extends BaseEntity> nextP);
-
-    Processor<T> next();
-
     /**
      * 获取(设置)当前处理器所处理的实体类（泛型替代）
      * @return 实体class

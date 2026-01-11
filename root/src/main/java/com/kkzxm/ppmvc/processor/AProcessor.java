@@ -2,7 +2,7 @@ package com.kkzxm.ppmvc.processor;
 
 import com.kkzxm.ppmvc.entity.BaseEntity;
 
-public abstract class AProcessor<T extends BaseEntity> implements Processor<T> {
+public abstract class AProcessor<T extends BaseEntity> implements Processor<T>, CRUD<T> {
     private Processor<T> next;
     protected final Class<T> entytyClass;
     private final int sortValue;
@@ -25,12 +25,11 @@ public abstract class AProcessor<T extends BaseEntity> implements Processor<T> {
     /**
      * 从仓库里获取下一个处理器
      */
-    @Override
+
     public void next(Processor<? extends BaseEntity> processor) {
         this.next = (Processor<T>) processor;
     }
 
-    @Override
     public Processor<T> next() {
         return next;
     }
