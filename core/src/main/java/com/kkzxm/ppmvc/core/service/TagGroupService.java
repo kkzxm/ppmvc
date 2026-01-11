@@ -1,9 +1,7 @@
 package com.kkzxm.ppmvc.core.service;
 
 import com.kkzxm.ppmvc.entity.TagGroup;
-import com.kkzxm.ppmvc.mapper.PMapper;
 import com.kkzxm.ppmvc.service.AService;
-
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TagGroupService extends AService<TagGroup> {
 
-    public TagGroupService(PMapper<TagGroup> mapper) {
-        super(TagGroup.class, mapper);
+    public TagGroupService() {
+        super(TagGroup.class);
     }
 }

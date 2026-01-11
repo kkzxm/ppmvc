@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia'
-import { RouterMenu } from '@/pojo/RouterMenu'
-import { TreeIP } from '@/utils/aboutTree/TreeIP'
+import {defineStore} from 'pinia'
+import {RouterMenu} from '@/pojo/RouterMenu'
+import {TreeIP} from '@/utils/aboutTree/TreeIP'
 
 export const menuStore = defineStore('menu', () => {
   /**

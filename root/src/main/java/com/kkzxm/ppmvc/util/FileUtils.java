@@ -1,10 +1,10 @@
 package com.kkzxm.ppmvc.util;
 
 
-import static com.kkzxm.ppmvc.util.StringUtils.truncatedString;
-
 import java.io.*;
 import java.util.List;
+
+import static com.kkzxm.ppmvc.util.StringUtils.truncatedString;
 
 
 /**

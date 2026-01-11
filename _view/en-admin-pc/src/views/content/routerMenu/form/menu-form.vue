@@ -27,10 +27,10 @@
 </template>
 
 <script lang="ts">
-import { mapState } from 'pinia'
-import { menuStore } from '../menuStore.js'
-import { routerObj } from '@/api/routerApi'
-import type { RouterMenu } from '@/pojo/RouterMenu'
+import {mapState} from 'pinia'
+import {menuStore} from '../menuStore.js'
+import {routerObj} from '@/api/routerApi'
+import type {RouterMenu} from '@/pojo/RouterMenu'
 
 /**
  * @Author: 酷酷宅小明

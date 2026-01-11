@@ -1,9 +1,7 @@
 package com.kkzxm.ppmvc.core.service;
 
 import com.kkzxm.ppmvc.entity.WordType;
-import com.kkzxm.ppmvc.mapper.PMapper;
 import com.kkzxm.ppmvc.service.AService;
-
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class WordTypeService extends AService<WordType> {
 
-    public WordTypeService(PMapper<WordType> mapper) {
-        super(WordType.class, mapper);
+    public WordTypeService() {
+        super(WordType.class);
     }
 }

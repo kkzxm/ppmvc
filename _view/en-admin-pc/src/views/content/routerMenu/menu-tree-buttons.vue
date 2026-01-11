@@ -31,10 +31,10 @@
  * @Author: 酷酷宅小明
  * @CreateTime: 2024/11/4 03:57
  */
-import { mapState } from 'pinia'
-import { menuStore } from '@/views/content/routerMenu/menuStore'
-import { MdHand as HandIcon } from '@vicons/ionicons4'
-import { routerObj } from '@/api/routerApi'
+import {mapState} from 'pinia'
+import {menuStore} from '@/views/content/routerMenu/menuStore'
+import {MdHand as HandIcon} from '@vicons/ionicons4'
+import {routerObj} from '@/api/routerApi'
 
 export default {
   name: 'menu-tree-buttons',

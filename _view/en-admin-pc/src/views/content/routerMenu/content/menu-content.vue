@@ -15,9 +15,8 @@
 </template>
 
 <script lang="ts">
-import { mapState } from 'pinia'
-import { menuStore } from '../menuStore'
-
+import {mapState} from 'pinia'
+import {menuStore} from '../menuStore'
 
 
 /**

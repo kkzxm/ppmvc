@@ -1,4 +1,4 @@
-import type { ot, strNum } from '@/utils/sType'
+import type {ot, strNum} from '@/utils/sType'
 
 /**
  * 树类

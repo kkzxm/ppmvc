@@ -1,4 +1,4 @@
-import { method } from '@/utils/request'
+import {method} from '@/utils/request'
 
 export abstract class BaseApi {
   baseUrl: string

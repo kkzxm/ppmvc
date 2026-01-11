@@ -1,18 +1,17 @@
 package com.kkzxm.ppmvc.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
+import com.kkzxm.ppmvc.controller.result.Result;
+import com.kkzxm.ppmvc.entity.BaseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.kkzxm.ppmvc.controller.result.Result;
-import com.kkzxm.ppmvc.entity.BaseEntity;
+import javax.servlet.http.HttpServletRequest;
 
 public interface IController<T extends BaseEntity> {
      
     @PostMapping(value = "/add")
-    com.kkzxm.ppmvc.controller.result.Result add(HttpServletRequest request,T entity);
+    Result add(HttpServletRequest request,T entity);
     
     @PostMapping(value = "/delById")
     Result delById(HttpServletRequest request,T entity);

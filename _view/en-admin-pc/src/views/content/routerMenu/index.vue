@@ -56,13 +56,13 @@
 </template>
 
 <script lang="ts">
-import { mapState } from 'pinia'
+import {mapState} from 'pinia'
 import menu_tree_buttons from './menu-tree-buttons.vue'
-import { menuStore } from './menuStore'
-import { type TreeOption } from 'naive-ui'
-import { h } from 'vue'
+import {menuStore} from './menuStore'
+import {type TreeOption} from 'naive-ui'
+import {h} from 'vue'
 import MenuForm from './form/menu-form.vue'
-import { routerObj } from '@/api/routerApi'
+import {routerObj} from '@/api/routerApi'
 import MenuContent from '@/views/content/routerMenu/content/menu-content.vue'
 
 /**

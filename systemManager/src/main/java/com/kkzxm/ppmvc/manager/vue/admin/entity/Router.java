@@ -2,7 +2,6 @@ package com.kkzxm.ppmvc.manager.vue.admin.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.kkzxm.ppmvc.entity.BaseEntity;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;

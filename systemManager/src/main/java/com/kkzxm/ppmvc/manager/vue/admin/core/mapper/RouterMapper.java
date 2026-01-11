@@ -1,7 +1,7 @@
 package com.kkzxm.ppmvc.manager.vue.admin.core.mapper;
 
-import com.kkzxm.ppmvc.mapper.PMapper;
 import com.kkzxm.ppmvc.manager.vue.admin.entity.Router;
+import com.kkzxm.ppmvc.mapper.PMapper;
 
 /**
  * @Author: 酷酷宅小明

@@ -2,7 +2,6 @@ package com.kkzxm.ppmvc.core.controller;
 
 import com.kkzxm.ppmvc.controller.AController;
 import com.kkzxm.ppmvc.entity.WordAndTagGroup;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

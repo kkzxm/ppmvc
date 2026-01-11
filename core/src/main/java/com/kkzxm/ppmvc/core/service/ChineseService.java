@@ -2,9 +2,7 @@ package com.kkzxm.ppmvc.core.service;
 
 
 import com.kkzxm.ppmvc.entity.Chinese;
-import com.kkzxm.ppmvc.mapper.PMapper;
 import com.kkzxm.ppmvc.service.AService;
-
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ChineseService extends AService<Chinese> {
 
-    public ChineseService(PMapper<Chinese> mapper) {
-        super(Chinese.class,mapper);
+    public ChineseService() {
+        super(Chinese.class);
     }
 }

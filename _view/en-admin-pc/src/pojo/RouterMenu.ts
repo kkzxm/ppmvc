@@ -1,4 +1,4 @@
-import { ATree } from '@/utils/aboutTree/Tree'
+import {ATree} from '@/utils/aboutTree/Tree'
 
 /*
 type rT = {

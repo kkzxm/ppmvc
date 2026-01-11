@@ -12,10 +12,10 @@
 </template>
 
 <script lang="ts">
-import { mapState } from 'pinia'
-import { menuStore } from '@/views/content/routerMenu/menuStore'
-import type { MenuOption } from 'naive-ui'
-import { h } from 'vue'
+import {mapState} from 'pinia'
+import {menuStore} from '@/views/content/routerMenu/menuStore'
+import type {MenuOption} from 'naive-ui'
+import {h} from 'vue'
 
 /**
  * @Author: 酷酷宅小明

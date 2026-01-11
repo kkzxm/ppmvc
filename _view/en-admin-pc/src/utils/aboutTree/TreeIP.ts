@@ -1,5 +1,5 @@
-import type { strNum } from '@/utils/sType'
-import type { ATree } from '@/utils/aboutTree/Tree'
+import type {strNum} from '@/utils/sType'
+import type {ATree} from '@/utils/aboutTree/Tree'
 
 export class TreeIP<T extends ATree> {
   private idTreeMap: Map<strNum, T> = new Map<strNum, T>()
